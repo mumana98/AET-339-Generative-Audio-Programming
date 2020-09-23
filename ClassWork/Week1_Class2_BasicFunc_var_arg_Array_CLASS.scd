@@ -35,15 +35,6 @@ basicFunction = {
 basicFunction.value(4, 5);
 )
 
-//my version - dont do - not modular
-/*
-(
-var basicFunction = {3.cubed + 4};
-basicFunction.value;
-)
-*/
-
-
 //Makeing noise
 
 (

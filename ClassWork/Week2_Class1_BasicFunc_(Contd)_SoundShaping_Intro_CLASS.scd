@@ -7,20 +7,6 @@ Class Problem for Review
 */
 
 
-/*
-(
-~noise = {
-	arg amp;
-	var sig;
-	sig = PinkNoise.ar!2;
-	sig = sig * amp;
-
-};
-)
-~noise.play(args:[\amp, 0.05]);
-*/
-
-
 s.meter;
 s.scope;
 

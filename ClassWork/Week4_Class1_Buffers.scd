@@ -1,7 +1,7 @@
 //Buffers//
 b = Buffer.read(s, "/Users/matthewumana/Documents/Generative Audio/Week4_Class1_Buffers.scd"); //Copy the file into the "path" argument area
 
-b.play; //Test it
+b.play; //Testing buffer
 
 b.numChannels;
 b.bufnum;
@@ -11,7 +11,7 @@ b.numFrames; //Equal to the number of samples in a mono audio file. Stays the sa
 
 ~numSamples = b.numChannels * b.sampleRate * b.duration; //How to calculate number of samples. (This will be 2 times numFrames in a stereo file).
 
-Buffer.freeAll; //Free all buffers;
+Buffer.freeAll; //Free all buffers
 
 (
 SynthDef.new(\bufplay, {
@@ -34,7 +34,7 @@ SynthDef.new(\bufplay, {
 x = Synth.new(\bufplay, args:[
 	\buf, b.bufnum,
 	\rate, rrand(0.5,4),
-	\spos, rrand((b.numFrames * 0.005), (b.numFrames * 0.3)), //multiply by a percentage of the total number of frames to pick the earliest and latest possible start time positions (i.e., from half of a percent up to 50 percent of the way through the buffer in this case)
+	\spos, rrand((b.numFrames * 0.005), (b.numFrames * 0.3)), //multiply by a percentage of the total number of frames to pick the earliest and latest possible start time positions (from half of a percent up to 50 percent of the way through the buffer in this case)
 	\pan, rrand(-1,1),
 	\amp, exprand(3,5)
 ]);

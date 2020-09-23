@@ -1,6 +1,5 @@
 /******SynthDef******/
 
-//Let's make a function:
 
 (
 x = {
@@ -26,7 +25,7 @@ x = {
 }.play;
 )
 
-//Let's wrap this into a SynthDef:
+//Wrapped into a SynthDef
 (
 SynthDef.new(\saw, {
 	arg amp=0.05, freq=440;
@@ -38,8 +37,8 @@ SynthDef.new(\saw, {
 }).add;
 )
 
-//Use the Synth class to play the SynthDef:
-Synth.new(\saw, [\amp, 0.05, \freq, [440,660].choose]); //No sound...Why?
+//Using the Synth class to play the SynthDef
+Synth.new(\saw, [\amp, 0.05, \freq, [440,660].choose]); //No sound
 
 (
 SynthDef.new(\saw, {
@@ -89,7 +88,7 @@ SynthDef.new(\saw, {
 }).add;
 )
 
-//Use the .midicps method to convert from midi note numbers to cycles per second (frequency)
+//Using the .midicps method to convert from midi note numbers to cycles per second (frequency)
 (
 Synth.new(\saw, [\amp, 0.03, \freq, 33.midicps]);
 Synth.new(\saw, [\amp, 0.03, \freq, 45.midicps]);
@@ -103,8 +102,8 @@ Synth.new(\saw, [\amp, 0.03, \freq, 61.midicps]);
 
 //Use .do method instead of repeating lots of lines of code to do redundant tasks:
 
-//First just post "hello" for each item in the array
-//the array is the 'receiver' of action. The function inside of the .do method is what will occur with each item...
+//Posting "hello" for each item in array
+//the array is the 'receiver' of action. The function inside of the .do method is what will occur with each item
 (
 [33,45,52,61].do({
 	"hello".postln;
@@ -120,7 +119,7 @@ Synth.new(\saw, [\amp, 0.03, \freq, 61.midicps]);
 )
 
 
-//Now us this process to create the notes of your chords
+//Using this process to create the notes of your chords
 (
 [33,45,52,61].do({
 	arg note;
@@ -129,7 +128,7 @@ Synth.new(\saw, [\amp, 0.03, \freq, 61.midicps]);
 )
 
 
-//What if it's an envelope with a gate? (Env.adsr or Env.asr?)
+// envelope with a gate (Env.adsr or Env.asr)
 (
 SynthDef.new(\saw, {
 	arg amp=0.05, freq=440, gate=1; //add gate arg (1 by default)
@@ -143,7 +142,7 @@ SynthDef.new(\saw, {
 }).add;
 )
 
-//Use the .collect method to store the evaluation of the function--the synth playing on the server in this case--to be able to turn off their gates individually
+// .collect method to store the evaluation of the function--the synth playing on the server in this case--to be able to turn off their gates individually
 (
 x = [33,45,52,61].collect({ //using .collect instead of .do
 	arg note;
@@ -160,7 +159,7 @@ x[3].set(\gate, 0);
 
 //Use the do method to turn them off simultaneously:
 (
-x.do({ //remember, x is an array of synths that are playing on the server, so we can set all of the gates using iteration
+x.do({ // x is an array of synths that are playing on the server, so we can set all of the gates using iteration
 	arg synth;
 	synth.set(\gate, 0);
 })
